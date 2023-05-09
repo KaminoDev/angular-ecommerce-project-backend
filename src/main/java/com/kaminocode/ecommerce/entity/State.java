@@ -1,26 +1,22 @@
 package com.kaminocode.ecommerce.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Table(name="country")
-@Getter
-@Setter
-public class Country {
+@Table(name="state")
+@Data
+public class State {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
-    @Column(name="code")
-    private String code;
-
     @Column(name="name")
     private String name;
 
-    // TODO: Setup one-to-many with states
-
+    @ManyToOne
+    @JoinColumn(name="country_id")
+    private Country country;
 }
